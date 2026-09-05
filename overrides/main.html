@@ -1,0 +1,62 @@
+{# Overrides Material's main.html to inject JSON-LD structured data into the   #}
+{# document head. Spec: docs/DOCS_SITE_CONTENT_PLAN.md § Discoverability       #}
+{# surfaces.                                                                   #}
+{#                                                                             #}
+{# - SoftwareApplication on the homepage (Google software-card surface).       #}
+{# - HowTo on any page whose front-matter sets `schema_type: HowTo` (Google's  #}
+{#   preferred shape for question-answering retrieval).                        #}
+
+{% extends "base.html" %}
+
+{% block extrahead %}
+  {{ super() }}
+  {% if page and page.is_homepage %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "BCDock",
+    "description": "Managed Business Central sandbox platform. Spin up BC environments from a portal, the bcdock CLI, or an AI agent. Hibernate to flat stored rate, resume on demand.",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Web, macOS, Linux, Windows",
+    "offers": {
+      "@type": "Offer",
+      "priceCurrency": "AUD",
+      "price": "0.59",
+      "priceSpecification": {
+        "@type": "UnitPriceSpecification",
+        "price": "0.59",
+        "priceCurrency": "AUD",
+        "unitText": "HOUR"
+      }
+    },
+    "url": "https://bcdock.io",
+    "sameAs": [
+      "https://docs.bcdock.io",
+      "https://github.com/bcdock"
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "BCDock",
+      "url": "https://bcdock.io"
+    }
+  }
+  </script>
+  {% endif %}
+  {% if page and page.meta and page.meta.schema_type == "HowTo" %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": {{ page.meta.title | default(page.title) | tojson }},
+    "description": {{ page.meta.description | default("") | tojson }},
+    "url": "{{ page.canonical_url }}",
+    "publisher": {
+      "@type": "Organization",
+      "name": "BCDock",
+      "url": "https://bcdock.io"
+    }
+  }
+  </script>
+  {% endif %}
+{% endblock %}

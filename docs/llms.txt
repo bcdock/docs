@@ -1,0 +1,25 @@
+# BCDock
+
+> Managed Business Central sandbox platform. Two equally first-class entry points: a portal for consultants, trainers, and sales engineers, and a `bcdock` CLI for developers, CI pipelines, and AI agents. Spin up a BC environment in minutes, hibernate to drop to a flat stored rate, resume on demand. Sandbox use only — not for production data.
+
+The same Platform API serves the portal, the CLI, and any third-party integration. There is no second, privileged API. CLI commands are stable; exit codes are documented; every verb supports `--output json`.
+
+## Canonical pages
+
+- [What is BCDock?](https://docs.bcdock.io/) — orientation + onboarding paths
+- [CLI quickstart](https://docs.bcdock.io/quickstart/cli/) — five commands to a running BC environment
+- [CLI install](https://docs.bcdock.io/cli/install/) — install paths for macOS, Linux, Windows
+- [CLI authentication](https://docs.bcdock.io/cli/auth/) — API key vs JWT, scopes, the three credential paths
+- [CLI concepts](https://docs.bcdock.io/cli/concepts/) — pool vs environment, hibernation, billing model
+- [CLI exit codes](https://docs.bcdock.io/cli/exit-codes/) — what each code means, what an agent should do
+- [CLI command reference](https://docs.bcdock.io/cli/reference/bcdock/) — auto-generated from the binary; one page per verb
+
+## Marketing site
+
+- [bcdock.io](https://bcdock.io) — pricing, signup, audience-facing positioning
+- [docs.bcdock.io/reference/limitations/](https://docs.bcdock.io/reference/limitations/) — honest comparison vs BC SaaS
+
+## Contact
+
+- Security disclosure: security@bcdock.io
+- General: hello@bcdock.io

@@ -1,0 +1,134 @@
+site_name: BCDock Docs
+site_url: https://docs.bcdock.io
+site_description: Reference and guides for the BCDock CLI, API, and integration patterns. Managed Business Central sandboxes — provisioned in minutes from the portal, the CLI, or your AI agent.
+site_author: BCDock
+copyright: Copyright &copy; BCDock
+
+# Top-nav link to the GitHub repo (Material renders a GitHub icon + repo
+# name in the top-right of the header). Clicking it opens bcdock/docs
+# where readers can file issues (typo / error / missing example).
+# edit_uri is intentionally blank: this is a force-push mirror that
+# doesn't accept PRs, so the "Edit this page" link would mislead readers.
+repo_url: https://github.com/bcdock/docs
+repo_name: bcdock/docs
+edit_uri: ''
+
+docs_dir: docs
+site_dir: site
+
+theme:
+  name: material
+  custom_dir: overrides
+  language: en
+  logo: assets/bcdock-logo.svg
+  favicon: assets/bcdock-logo.svg
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - navigation.indexes
+    - navigation.tracking
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.code.annotate
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  font:
+    text: IBM Plex Sans
+    code: JetBrains Mono
+
+extra:
+  social:
+    - icon: fontawesome/solid/globe
+      link: https://bcdock.io
+  generator: false
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+      toc_depth: 3
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+plugins:
+  - search
+
+extra_css:
+  - stylesheets/extra.css
+
+nav:
+  - Home: index.md
+  - Quickstart:
+    - Portal: quickstart/portal.md
+    - CLI: quickstart/cli.md
+    - Agent: quickstart/agent.md
+  - CLI:
+    - Install: cli/install.md
+    - Authentication: cli/auth.md
+    - Concepts: cli/concepts.md
+    - Exit codes: cli/exit-codes.md
+    - Agent scenarios: cli/agent-scenarios.md
+    - Command reference: cli/reference/bcdock.md
+  - Guides:
+    - AL extension loop: guides/al-extension-loop.md
+    - GitHub Actions: guides/github-actions.md
+    - Claude Code: guides/claude-code.md
+    - Data export: guides/data-export.md
+    - Account deletion: guides/account-deletion.md
+  - Reference:
+    - Limitations: reference/limitations.md
+    - API keys: reference/api-keys.md
+    - Environment states: reference/env-states.md
+    - BC versions and regions: reference/bc-versions.md
+    - Glossary: reference/glossary.md
+  - Security:
+    - Posture: security/posture.md
+    - Data handling: security/data-handling.md
+    - Data export: security/data-export.md
+    - Account deletion: security/account-deletion.md
+    - Disclosure: security/disclosure.md
+  - Architecture:
+    - Overview: architecture/overview.md
+    - Images and pools: architecture/images-and-pools.md
+    - URL shape: architecture/url-shape.md
+    - Hibernation: architecture/hibernation.md
+    - Anonymise-in-place: architecture/anonymisation.md

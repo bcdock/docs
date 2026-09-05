@@ -1,0 +1,50 @@
+name: Auto-close PRs
+
+# `github.com/bcdock/docs` is published from an internal source on every
+# change. PRs opened here would be overwritten on the next sync, so this
+# bot closes them and redirects contributors to Issues + support@bcdock.io.
+# Issues are open for typo reports, missing examples, and factual errors;
+# see CONTRIBUTING.md.
+
+on:
+  pull_request_target:
+    types: [opened, reopened]
+
+permissions:
+  pull-requests: write
+  issues: write
+
+jobs:
+  close:
+    name: close-with-redirect
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Close PR and post redirect comment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const body = [
+              "Thanks for opening this PR! Heads up: **`bcdock/docs` is published from an internal source on every change** - PRs opened here get overwritten on the next sync, so we cannot review or merge them.",
+              "",
+              "We do welcome contributions through a different channel:",
+              "",
+              "- **Typos, broken links, factual errors, missing examples**: please [open an issue](https://github.com/" + context.repo.owner + "/" + context.repo.repo + "/issues/new). Small fixes are typically applied within a few days.",
+              "- **Larger structural suggestions or new pages**: open an issue describing the change and the audience it serves; we'll discuss before drafting.",
+              "- **Email**: support@bcdock.io for anything that doesn't fit either of the above.",
+              "- **Security issues**: please follow the disclosure process in [`SECURITY.md`](../blob/main/SECURITY.md) - do **not** post details in a public PR or issue.",
+              "",
+              "See [`CONTRIBUTING.md`](../blob/main/CONTRIBUTING.md) for the full policy. Closing this PR.",
+            ].join("\n");
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.pull_request.number,
+              body,
+            });
+            await github.rest.pulls.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.payload.pull_request.number,
+              state: "closed",
+            });

@@ -1,0 +1,59 @@
+name: Deploy docs.bcdock.io
+
+# Builds the Mkdocs Material site and publishes to GitHub Pages with custom
+# domain via docs/CNAME -> docs.bcdock.io. The CLI reference under
+# docs/cli/reference/ is pre-generated and committed, so this workflow only
+# needs Python + mkdocs.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: docs-deploy
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+          cache-dependency-path: requirements.txt
+
+      - name: Install mkdocs + theme
+        run: pip install --quiet -r requirements.txt
+
+      - name: Build site (strict - broken nav/links fail the build)
+        run: mkdocs build --strict
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

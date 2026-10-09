@@ -1,0 +1,369 @@
+/*
+ * Laboratory Blend theme for docs.bcdock.io.
+ * Source of truth for tokens: docs/themes/LABORATORY_BLEND.md.
+ * Hex values appear ONLY in this file (no hardcoded colors elsewhere).
+ */
+
+/* Light scheme — Laboratory Blend */
+[data-md-color-scheme="default"] {
+  --lab-sand:        #F6F2EA;
+  --lab-sand-dark:   #EDE8DD;
+  --lab-teal:        #0F766A;
+  --lab-teal-light:  #14B8A6;
+  --lab-teal-dark:   #0D5A50;
+  --lab-amber:       #D49320;
+  --lab-amber-light: #F4D03F;
+  --lab-amber-dark:  #B47A10;
+  --lab-sun:         #E87B35;
+  --lab-graphite:    #1A202C;
+  --lab-ink:         #2D3748;
+  --lab-stone:       #4A5568;
+  --lab-chalk:       #F7FAFC;
+
+  /* Material primary = Teal (CTAs, headers, search) */
+  --md-primary-fg-color:        var(--lab-teal);
+  --md-primary-fg-color--light: var(--lab-teal-light);
+  --md-primary-fg-color--dark:  var(--lab-teal-dark);
+  --md-primary-bg-color:        #FFFFFF;
+  --md-primary-bg-color--light: #FFFFFFB3;
+
+  /* Material accent = Teal-light (links on hover, focus) */
+  --md-accent-fg-color:         var(--lab-teal-light);
+  --md-accent-fg-color--transparent: rgba(20, 184, 166, 0.1);
+  --md-accent-bg-color:         #FFFFFF;
+  --md-accent-bg-color--light:  #FFFFFFB3;
+
+  /* Surfaces */
+  --md-default-bg-color:        var(--lab-sand);
+  --md-default-fg-color:        var(--lab-ink);
+  --md-default-fg-color--light: var(--lab-stone);
+  --md-default-fg-color--lighter: rgba(74, 85, 104, 0.5);
+  --md-default-fg-color--lightest: rgba(74, 85, 104, 0.12);
+
+  /* Typeset (article body) */
+  --md-typeset-color:           var(--lab-ink);
+  --md-typeset-a-color:         var(--lab-teal);
+
+  /* Code blocks — sand-dark panel: a step darker than the page sand so code
+     reads as a recessed surface, not a lighter-than-paper sheet. Uses the
+     existing "--sand-dark: card backgrounds, secondary surfaces" token from
+     the theme spec. Light theme only; dark scheme keeps chalk. */
+  --md-code-bg-color:           var(--lab-sand-dark);
+  --md-code-fg-color:           var(--lab-graphite);
+
+  /* Footer */
+  --md-footer-bg-color:         var(--lab-graphite);
+  --md-footer-bg-color--dark:   #0F1419;
+  --md-footer-fg-color:         #E8E6E1;
+  --md-footer-fg-color--light:  #C2BEB5;
+  --md-footer-fg-color--lighter: #8A8680;
+}
+
+/* Dark scheme — Harbor Night */
+[data-md-color-scheme="slate"] {
+  --lab-sand:        #0F1419;
+  --lab-sand-dark:   #252B32;
+  --lab-teal:        #2DD4BF;
+  --lab-teal-light:  #5EEAD4;
+  --lab-teal-dark:   #14B8A6;
+  --lab-amber:       #FF8C42;
+  --lab-amber-light: #FFB07A;
+  --lab-amber-dark:  #E06F2A;
+  --lab-graphite:    #E8E6E1;
+  --lab-ink:         #C2BEB5;
+  --lab-stone:       #8A8680;
+  --lab-chalk:       #1A2028;
+
+  --md-primary-fg-color:        var(--lab-teal);
+  --md-primary-fg-color--light: var(--lab-teal-light);
+  --md-primary-fg-color--dark:  var(--lab-teal-dark);
+  --md-primary-bg-color:        var(--lab-sand);
+  --md-primary-bg-color--light: rgba(15, 20, 25, 0.7);
+
+  --md-accent-fg-color:         var(--lab-amber);
+  --md-accent-fg-color--transparent: rgba(255, 140, 66, 0.12);
+  --md-accent-bg-color:         var(--lab-sand);
+  --md-accent-bg-color--light:  rgba(15, 20, 25, 0.7);
+
+  --md-default-bg-color:        var(--lab-sand);
+  --md-default-fg-color:        var(--lab-ink);
+  --md-default-fg-color--light: var(--lab-stone);
+
+  --md-typeset-color:           var(--lab-ink);
+  --md-typeset-a-color:         var(--lab-teal);
+
+  --md-code-bg-color:           var(--lab-chalk);
+  --md-code-fg-color:           var(--lab-graphite);
+
+  --md-footer-bg-color:         #0A0E12;
+  --md-footer-bg-color--dark:   #0A0E12;
+}
+
+/* ----- Typography ----- */
+
+body, .md-typeset {
+  font-family: "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  font-feature-settings: "kern", "liga";
+}
+
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3,
+.md-typeset h4,
+.md-typeset h5,
+.md-typeset h6,
+.md-nav__title {
+  font-family: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: -0.01em;
+  color: var(--lab-graphite);
+}
+
+.md-header__title,
+.md-tabs__link {
+  font-family: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: -0.01em;
+}
+
+[data-md-color-scheme="slate"] .md-typeset h1,
+[data-md-color-scheme="slate"] .md-typeset h2,
+[data-md-color-scheme="slate"] .md-typeset h3,
+[data-md-color-scheme="slate"] .md-typeset h4,
+[data-md-color-scheme="slate"] .md-typeset h5,
+[data-md-color-scheme="slate"] .md-typeset h6 {
+  color: var(--lab-graphite);
+}
+
+/* Type scale — Laboratory Blend */
+.md-typeset h1 { font-size: 2.25rem; font-weight: 600; letter-spacing: -0.02em; }
+.md-typeset h2 { font-size: 1.875rem; font-weight: 600; letter-spacing: -0.015em; margin-top: 2.5rem; }
+.md-typeset h3 { font-size: 1.5rem; font-weight: 500; margin-top: 2rem; }
+.md-typeset h4 { font-size: 1.25rem; font-weight: 500; }
+.md-typeset { font-size: 0.85rem; line-height: 1.65; }
+
+/* Code: JetBrains Mono */
+.md-typeset code,
+.md-typeset pre,
+.md-typeset kbd {
+  font-family: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  font-feature-settings: "calt", "ss01";
+}
+
+.md-typeset code {
+  border-radius: 4px;
+  padding: 0.15em 0.4em;
+  font-size: 0.86em;
+}
+
+/* ----- Header / nav polish -----
+ * Header uses Graphite, not Teal — the BC[)OCK wordmark splits warm/cool, and a
+ * teal header would camouflage the cool half. Graphite also matches the footer.
+ */
+
+.md-header {
+  background-color: var(--lab-graphite);
+  color: #FFFFFF;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
+}
+
+/* Logo — 1.5× Material's default 1.2rem so the BC[)OCK glyph holds its own
+ * against the wordmark text. The SVG itself (docs/assets/bcdock-logo.svg) is
+ * path-flattened from Space Grotesk SemiBold and shared with the favicon —
+ * resizing here doesn't fork the asset. */
+.md-header__button.md-logo svg,
+.md-header__button.md-logo img {
+  width: 1.8rem;
+  height: 1.8rem;
+}
+
+[data-md-color-scheme="slate"] .md-header {
+  background-color: #0A0E12;
+}
+
+.md-tabs {
+  background-color: var(--lab-ink);
+  color: #FFFFFF;
+}
+
+[data-md-color-scheme="slate"] .md-tabs {
+  background-color: #14191F;
+}
+
+.md-tabs__link {
+  color: rgba(255, 255, 255, 0.85);
+  opacity: 1;
+}
+
+.md-tabs__link:hover,
+.md-tabs__link--active {
+  color: #FFFFFF;
+}
+
+.md-search__form {
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+.md-search__form:hover {
+  background-color: rgba(255, 255, 255, 0.20);
+}
+
+/* ----- Links ----- */
+
+.md-typeset a {
+  color: var(--md-typeset-a-color);
+  text-decoration-color: rgba(15, 118, 106, 0.3);
+  text-underline-offset: 2px;
+}
+
+.md-typeset a:hover {
+  color: var(--lab-teal-dark);
+  text-decoration-color: currentColor;
+}
+
+[data-md-color-scheme="slate"] .md-typeset a:hover {
+  color: var(--lab-teal-light);
+}
+
+/* ----- Admonitions: map to Laboratory Blend alerts ----- */
+
+/* Info / note — teal */
+.md-typeset .admonition.note,
+.md-typeset details.note,
+.md-typeset .admonition.info,
+.md-typeset details.info {
+  border-color: var(--lab-teal);
+  background-color: #ECFDF5;
+}
+
+[data-md-color-scheme="slate"] .md-typeset .admonition.note,
+[data-md-color-scheme="slate"] .md-typeset details.note,
+[data-md-color-scheme="slate"] .md-typeset .admonition.info,
+[data-md-color-scheme="slate"] .md-typeset details.info {
+  background-color: rgba(45, 212, 191, 0.08);
+}
+
+.md-typeset .admonition.note > .admonition-title,
+.md-typeset details.note > summary,
+.md-typeset .admonition.info > .admonition-title,
+.md-typeset details.info > summary {
+  background-color: rgba(15, 118, 106, 0.12);
+  color: var(--lab-teal-dark);
+}
+
+/* Warning — amber */
+.md-typeset .admonition.warning,
+.md-typeset details.warning {
+  border-color: var(--lab-amber);
+  background-color: #FFFBEB;
+}
+
+[data-md-color-scheme="slate"] .md-typeset .admonition.warning,
+[data-md-color-scheme="slate"] .md-typeset details.warning {
+  background-color: rgba(255, 140, 66, 0.08);
+}
+
+.md-typeset .admonition.warning > .admonition-title,
+.md-typeset details.warning > summary {
+  background-color: rgba(212, 147, 32, 0.15);
+  color: #78350F;
+}
+
+[data-md-color-scheme="slate"] .md-typeset .admonition.warning > .admonition-title,
+[data-md-color-scheme="slate"] .md-typeset details.warning > summary {
+  color: #FFB07A;
+}
+
+/* Tip / success — success-green */
+.md-typeset .admonition.tip,
+.md-typeset details.tip,
+.md-typeset .admonition.success,
+.md-typeset details.success {
+  border-color: #6EE7B7;
+  background-color: #D1FAE5;
+}
+
+[data-md-color-scheme="slate"] .md-typeset .admonition.tip,
+[data-md-color-scheme="slate"] .md-typeset details.tip,
+[data-md-color-scheme="slate"] .md-typeset .admonition.success,
+[data-md-color-scheme="slate"] .md-typeset details.success {
+  background-color: rgba(110, 231, 183, 0.08);
+}
+
+.md-typeset .admonition.tip > .admonition-title,
+.md-typeset details.tip > summary,
+.md-typeset .admonition.success > .admonition-title,
+.md-typeset details.success > summary {
+  background-color: rgba(13, 90, 80, 0.12);
+  color: #065F46;
+}
+
+/* Danger / error — red */
+.md-typeset .admonition.danger,
+.md-typeset details.danger,
+.md-typeset .admonition.failure,
+.md-typeset details.failure,
+.md-typeset .admonition.error,
+.md-typeset details.error {
+  border-color: #FECACA;
+  background-color: #FEE2E2;
+}
+
+[data-md-color-scheme="slate"] .md-typeset .admonition.danger,
+[data-md-color-scheme="slate"] .md-typeset details.danger,
+[data-md-color-scheme="slate"] .md-typeset .admonition.failure,
+[data-md-color-scheme="slate"] .md-typeset details.failure,
+[data-md-color-scheme="slate"] .md-typeset .admonition.error,
+[data-md-color-scheme="slate"] .md-typeset details.error {
+  background-color: rgba(197, 48, 48, 0.1);
+}
+
+.md-typeset .admonition.danger > .admonition-title,
+.md-typeset details.danger > summary,
+.md-typeset .admonition.failure > .admonition-title,
+.md-typeset details.failure > summary,
+.md-typeset .admonition.error > .admonition-title,
+.md-typeset details.error > summary {
+  background-color: rgba(197, 48, 48, 0.12);
+  color: #991B1B;
+}
+
+/* ----- Tables ----- */
+
+.md-typeset table:not([class]) {
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--lab-sand-dark);
+}
+
+.md-typeset table:not([class]) th {
+  background-color: var(--lab-sand-dark);
+  color: var(--lab-graphite);
+  font-family: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  font-weight: 600;
+}
+
+[data-md-color-scheme="slate"] .md-typeset table:not([class]) th {
+  background-color: var(--lab-sand-dark);
+  color: var(--lab-graphite);
+}
+
+/* ----- Focus ring (accessibility) ----- */
+
+*:focus-visible {
+  outline: 2px solid var(--lab-teal);
+  outline-offset: 3px;
+}
+
+[data-md-color-scheme="slate"] *:focus-visible {
+  outline-color: var(--lab-teal-light);
+}
+
+/* ----- Reduced motion ----- */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,82 @@
+---
+title: bcdock env create
+---
+
+## bcdock env create
+
+Create a new BC environment
+
+### Synopsis
+
+Create a new BC environment.
+
+When --version / --country / --region are all omitted and stdin is a terminal,
+the CLI fetches fast configs (versions with pre-built VM images) across all
+regions and prompts you to pick one, so you only see versions that can be
+created right now.
+
+Pass the flags explicitly to skip the picker (scripts, CI, agent use).
+
+--version takes a full version (28.5.54151.56140) or a partial one: 28.5
+(major.minor) or 28 (major). The platform resolves a partial version, when you
+create, to the newest build with a ready image in the region, and the
+environment records that full version. Use major.minor in CI: builds move
+every week and old ones are retired, so a pinned full version stops working.
+
+A preview (insider) BC version needs --accept-insider-eula: passing it accepts
+the Business Central Insider EULA for that environment. Without it the platform
+refuses a preview version, and the error names the flag.
+
+Exit codes:
+  0   ok
+  1   general error, including provisioning failed or a --wait timeout
+  3   auth failure (missing or invalid token)
+  4   rate-limited
+
+```
+bcdock env create [flags]
+```
+
+### Examples
+
+```
+  bcdock env create
+  bcdock env create --name my-env --version 28.5 --country au --region australiaeast --wait
+    # 28.5 (or 28) takes the newest build with a ready image, so a CI
+    # pipeline keeps working when a new build lands. A full version
+    # (e.g. 28.5.54151.56140) pins one build exactly. See
+    # 'bcdock artifacts list --region australiaeast --fast-only'
+```
+
+### Options
+
+```
+      --accept-insider-eula     Accept the BC Insider EULA (required for a preview version)
+      --country string          Country localisation (e.g. au, us, gb)
+  -h, --help                    help for create
+      --insecure                Skip TLS verification when publishing manifest apps to the dev endpoint
+      --manifest string         Path to a bcdock.manifest.yaml. Implies --wait, because apps need a running environment. Precedence: an explicitly passed flag beats the manifest, which beats the built-in default
+      --multi-tenant            Multi-tenant mode (default true)
+      --name string             Environment name
+      --region string           Azure region
+      --type string             Environment type: sandbox or onprem (default "sandbox")
+      --version string          BC version: 28.5 or 28 (newest ready build) or a full version (e.g. 28.5.54151.56140); see 'bcdock artifacts list --fast-only'
+      --wait                    Block until running or failed
+      --wait-timeout duration   Max time to wait (default: 30m)
+```
+
+### Options inherited from parent commands
+
+```
+      --api-url string     API base URL (env: BCDOCK_API_URL)
+      --no-color           Disable colored output
+  -o, --output string      Output format: table, json, csv (default "table")
+  -q, --quiet              Suppress non-essential output
+      --timeout duration   Request timeout (default 30s)
+      --token string       API token (env: BCDOCK_TOKEN)
+```
+
+### SEE ALSO
+
+* [bcdock env](bcdock_env.md)	 - Manage Business Central environments
+

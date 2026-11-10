@@ -1,0 +1,20 @@
+# PINNED EXACTLY, and not as tidiness (Ravi, #329, 2026-09-16).
+#
+# Two builds resolve this file independently at different times: the docs-site
+# freshness check builds the REFERENCE from main, and the public repo's
+# deploy-docs.yml builds what is actually SERVED from the mirrored copy. The
+# check then hashes `docs[]` out of the search plugin's output and calls a
+# difference BEHIND. Under `>=`, any mkdocs-material release that changes how
+# the search plugin extracts text, derives titles, or splits pages into entries
+# makes every page differ with the prose untouched.
+#
+# And the red would not clear on its own: mirror-docs.yml is path-gated on
+# docs-site/**, so a dependency bump does not rebuild the site. The stale red
+# persists until the next docs merge - which can be weeks, on a check read
+# every morning. A check that reds on a dependency bump stops being read.
+#
+# Pinning makes the two builds the same build. Bump deliberately, in a PR that
+# touches docs-site/** so the mirror actually carries the new pin.
+mkdocs==1.6.1
+mkdocs-material==9.7.6
+pymdown-extensions==10.21.2

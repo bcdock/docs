@@ -1,0 +1,37 @@
+# BCDock
+
+> Managed Business Central sandbox platform for BC consultants, trainers and sales engineers. Sign in to the portal, pick a BC version and country, and you have a BC sandbox at its own HTTPS URL, usually in about 15 minutes, for client demos, training, or checking how standard BC behaves on a version. Hibernate it between uses and resume it later at the same URL. Developers, CI pipelines and AI agents drive the same platform from the `bcdock` CLI. Sandbox use only - not for production data.
+
+## Start here
+
+- [Portal quickstart](https://docs.bcdock.io/quickstart/portal/) - create your first BC sandbox from the portal, no CLI needed
+- [Prepare a client demo](https://docs.bcdock.io/guides/client-demo/) - create the day before, hibernate, resume before the meeting, what to share
+- [Run a training session](https://docs.bcdock.io/guides/training-session/) - environments per plan, create ahead, hibernate between sessions, resume before class
+- [What is BCDock?](https://docs.bcdock.io/) - orientation + onboarding paths
+- [CLI quickstart](https://docs.bcdock.io/quickstart/cli/) - five commands to a running BC environment
+- [Agent quickstart](https://docs.bcdock.io/quickstart/agent/) - point an AI agent at the `bcdock` CLI
+
+## For developers, CI and AI agents
+
+**One API for everyone.** The portal, the `bcdock` CLI, CI pipelines and AI agents all call the same public Platform API. What that means for you:
+- **No portal-only endpoints.** Every portal button calls the same public Platform API your agent uses; there are no portal-only endpoints.
+- **Anything the portal can do, the CLI can do,** except creating an API key (it needs a signed-in person) and switching plan (it opens with subscriptions).
+- **Two actions are reserved for a signed-in person:** creating API keys and adding team members.
+- **Our own staff tooling uses the same API, not a separate private route**, so the same authentication and request logging apply to it as to you.
+- **Stable for automation:** CLI commands are stable, exit codes are documented, and every verb supports `--output json`.
+
+- [CLI install](https://docs.bcdock.io/cli/install/) - install paths for macOS, Linux, Windows
+- [CLI authentication](https://docs.bcdock.io/cli/auth/) - API key vs JWT, scopes, the three credential paths
+- [CLI concepts](https://docs.bcdock.io/cli/concepts/) - pool vs environment, hibernation, billing model
+- [CLI exit codes](https://docs.bcdock.io/cli/exit-codes/) - what each code means, what an agent should do
+- [CLI command reference](https://docs.bcdock.io/cli/reference/bcdock/) - auto-generated from the binary; one page per verb
+
+## Marketing site
+
+- [bcdock.io](https://bcdock.io) - pricing, signup, audience-facing positioning
+- [docs.bcdock.io/reference/limitations/](https://docs.bcdock.io/reference/limitations/) - honest comparison vs BC SaaS
+
+## Contact
+
+- Security disclosure: security@bcdock.io
+- General: hello@bcdock.io
